@@ -18,6 +18,24 @@ This is a basic setup of a Discord bot using the [sapphire framework][sapphire] 
 npm install
 ```
 
+3. Generate Prisma client:
+
+```sh
+npx prisma generate
+```
+
+4. Set up the database (run migrations):
+
+```sh
+npx prisma migrate deploy
+```
+
+Or for development with a fresh database:
+
+```sh
+npx prisma migrate dev
+```
+
 ### Creating a Discord Bot
 
 Before you can run the bot, you need to create a Discord application and get a bot token:
@@ -27,11 +45,11 @@ Before you can run the bot, you need to create a Discord application and get a b
 3. Navigate to the **"Bot"** section in the left sidebar
 4. Click **"Add Bot"** (if you haven't already) and confirm
 5. Under the **"Token"** section, click **"Reset Token"** or **"Copy"** to get your bot token
-   - ⚠️ **Important**: Never share your bot token publicly! Treat it like a password.
+    - ⚠️ **Important**: Never share your bot token publicly! Treat it like a password.
 6. Enable the following **Privileged Gateway Intents** (if needed for your bot):
-   - **Message Content Intent** (required for message commands)
-   - **Server Members Intent** (if you need member information)
-   - **Presence Intent** (if you need presence information)
+    - **Message Content Intent** (required for message commands)
+    - **Server Members Intent** (if you need member information)
+    - **Presence Intent** (if you need presence information)
 
 ### Environment Setup
 
@@ -42,16 +60,19 @@ This project uses two separate `.env` files for different purposes:
 Copy the root example file:
 
 **On Linux/macOS:**
+
 ```sh
 cp .env.example .env
 ```
 
 **On Windows (PowerShell):**
+
 ```powershell
 Copy-Item .env.example .env
 ```
 
 **On Windows (Command Prompt):**
+
 ```cmd
 copy .env.example .env
 ```
@@ -75,16 +96,19 @@ NODE_ENV=development
 Copy the example file in the `src` directory:
 
 **On Linux/macOS:**
+
 ```sh
 cp src/.env.example src/.env
 ```
 
 **On Windows (PowerShell):**
+
 ```powershell
 Copy-Item src\.env.example src\.env
 ```
 
 **On Windows (Command Prompt):**
+
 ```cmd
 copy src\.env.example src\.env
 ```
@@ -101,6 +125,7 @@ NODE_ENV=development
 ```
 
 **Example `src/.env` file:**
+
 ```env
 DISCORD_TOKEN=YOUR_BOT_TOKEN_HERE
 NODE_ENV=development
@@ -110,8 +135,8 @@ NODE_ENV=development
 
 1. In the Discord Developer Portal, go to the **"OAuth2"** → **"URL Generator"** section
 2. Select the following scopes:
-   - `bot`
-   - `applications.commands` (for slash commands)
+    - `bot`
+    - `applications.commands` (for slash commands)
 3. Select the bot permissions you need (e.g., "Send Messages", "Read Message History", etc.)
 4. Copy the generated URL and open it in your browser
 5. Select a server and authorize the bot
@@ -131,6 +156,7 @@ npm run watch:start
 You can also run the bot with `npm run dev`, this will first build your code and then run `node ./dist/index.js`. However, this is not the recommended way to run a bot in production.
 
 For production, you should:
+
 1. Build the project: `npm run build`
 2. Run the compiled code: `npm run start`
 3. Use a process manager like PM2 or systemd to keep the bot running
